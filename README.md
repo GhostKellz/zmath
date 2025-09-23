@@ -18,6 +18,7 @@ zmath is a comprehensive mathematical computing library designed to replace C li
 ### 🔢 Linear Algebra
 - **Vector Operations**: Addition, subtraction, scalar multiplication, dot product, magnitude
 - **Matrix Operations**: Addition, subtraction, multiplication, transpose, scalar multiplication
+- **Advanced Matrix Factorization**: LU decomposition for solving linear systems, QR decomposition for least squares, eigenvalue/eigenvector computation
 - **Memory Efficient**: Proper memory management with Zig allocators
 - **Type Safe**: Compile-time dimension checking and error handling
 
@@ -30,6 +31,8 @@ zmath is a comprehensive mathematical computing library designed to replace C li
 - **Zero-cost Abstractions**: No runtime overhead from abstractions
 - **Memory Safe**: Automatic memory management with RAII patterns
 - **Optimized**: Designed for high-performance numerical computing
+- **SIMD Acceleration**: Vectorized operations for improved performance
+- **Optimization Algorithms**: Gradient descent for function minimization
 
 ## 🛠️ Installation
 
@@ -43,7 +46,7 @@ Add zmath to your `build.zig.zon`:
     .version = "0.1.0",
     .dependencies = .{
         .zmath = .{
-            .url = "https://github.com/yourusername/zmath/archive/main.tar.gz",
+            .url = "https://github.com/ghostkellz/zmath/archive/main.tar.gz",
             .hash = "...", // zig will provide this
         },
     },
@@ -53,7 +56,7 @@ Add zmath to your `build.zig.zon`:
 ### Building from Source
 
 ```bash
-git clone https://github.com/yourusername/zmath.git
+git clone https://github.com/ghostkellz/zmath.git
 cd zmath
 zig build
 ```
@@ -133,6 +136,14 @@ var result = try mat.subtract(allocator, m1, m2);
 var result = try mat.multiply(allocator, m1, m2);
 var result = try mat.transpose(allocator, m);
 var result = try mat.scalarMultiply(allocator, m, scalar);
+
+// Advanced operations
+var lu = try mat.luDecompose(allocator, m);  // Returns {l: Matrix, u: Matrix}
+defer lu.l.deinit();
+defer lu.u.deinit();
+var qr = try mat.qrDecompose(allocator, m);  // Returns {q: Matrix, r: Matrix}
+defer qr.q.deinit();
+defer qr.r.deinit();
 ```
 
 ### Statistical Functions
@@ -168,11 +179,13 @@ zig build run
 - [x] Comprehensive testing
 - [x] Memory safety
 
-### Phase 2 🚧 (In Progress)
-- [ ] Advanced linear algebra (LU decomposition, eigenvalues)
-- [ ] FFT implementation
-- [ ] Optimization algorithms
-- [ ] SIMD optimizations
+### Phase 2 ✅ (Completed)
+- [x] LU decomposition for solving linear systems
+- [x] QR decomposition for least squares
+- [x] Eigenvalue/eigenvector computation
+- [x] FFT implementation
+- [x] SIMD optimizations
+- [x] Optimization algorithms (gradient descent)
 
 ### Phase 3 🔮 (Planned)
 - [ ] GPU acceleration
@@ -187,7 +200,7 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 ### Development Setup
 
 ```bash
-git clone https://github.com/yourusername/zmath.git
+git clone https://github.com/ghostkellz/zmath.git
 cd zmath
 zig build test  # Run tests
 zig build run   # Run demonstration
@@ -205,9 +218,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 📖 [Documentation](https://github.com/yourusername/zmath/wiki)
-- 🐛 [Issue Tracker](https://github.com/yourusername/zmath/issues)
-- 💬 [Discussions](https://github.com/yourusername/zmath/discussions)
+- 📖 [Documentation](https://github.com/ghostkellz/zmath/wiki)
+- 🐛 [Issue Tracker](https://github.com/ghostkellz/zmath/issues)
+- 💬 [Discussions](https://github.com/ghostkellz/zmath/discussions)
 
 ---
 

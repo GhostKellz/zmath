@@ -65,6 +65,18 @@ pub fn main() !void {
     std.debug.print("   [{d:.1} {d:.1}]\n", .{ m_trans.get(0, 0), m_trans.get(0, 1) });
     std.debug.print("   [{d:.1} {d:.1}]\n", .{ m_trans.get(1, 0), m_trans.get(1, 1) });
 
+    // Demonstrate LU decomposition
+    var lu = try zmath.mat.luDecompose(allocator, m1);
+    defer lu.l.deinit();
+    defer lu.u.deinit();
+    std.debug.print("   m1 = L * U:\n", .{});
+    std.debug.print("   L (lower triangular):\n", .{});
+    std.debug.print("   [{d:.1} {d:.1}]\n", .{ lu.l.get(0, 0), lu.l.get(0, 1) });
+    std.debug.print("   [{d:.1} {d:.1}]\n", .{ lu.l.get(1, 0), lu.l.get(1, 1) });
+    std.debug.print("   U (upper triangular):\n", .{});
+    std.debug.print("   [{d:.1} {d:.1}]\n", .{ lu.u.get(0, 0), lu.u.get(0, 1) });
+    std.debug.print("   [{d:.1} {d:.1}]\n", .{ lu.u.get(1, 0), lu.u.get(1, 1) });
+
     // Demonstrate statistical functions
     std.debug.print("\n3. Statistical Functions:\n", .{});
 
