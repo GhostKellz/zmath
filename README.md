@@ -9,6 +9,14 @@
   [![Numerical Computing](https://img.shields.io/badge/Numerical-Computing-green?style=for-the-badge&logo=calculator)](https://en.wikipedia.org/wiki/Numerical_analysis)
 </div>
 
+## DISCLAIMER
+
+⚠️ **EXPERIMENTAL LIBRARY - FOR LAB/PERSONAL USE** ⚠️
+
+This is an experimental library under active development. It is
+intended for research, learning, and personal projects. The API is subject
+to change!
+
 **Advanced Mathematics Library for Zig**
 
 zmath is a comprehensive mathematical computing library designed to replace C libraries like BLAS, LAPACK, and GSL. It provides high-performance linear algebra, statistical computing, and numerical analysis capabilities with a clean, idiomatic Zig interface.
